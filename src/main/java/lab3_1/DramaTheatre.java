@@ -4,7 +4,7 @@ public class DramaTheatre extends Theatre {
     private int stateAwardsCount;
     private String mainPrize;
 
-    static {
+    {
         typeName = "драматический";
     }
 
@@ -36,5 +36,12 @@ public class DramaTheatre extends Theatre {
 
     public int getAwardsCount() {
         return this.stateAwardsCount;
+    }
+
+    @Override
+    public String getFancyInfo() {
+        return super.getFancyInfo() +
+                "Высшая присвоенная награда: " + this.getMainPrize() + "\n" +
+                "Число гос наград: " + this.getAwardsCount() + "\n";
     }
 }

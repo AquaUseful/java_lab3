@@ -4,7 +4,7 @@ public class PuppetTheatre extends Theatre {
     private String mainDoll;
     private int dollCount;
 
-    static {
+    {
         typeName = "кукольный";
     }
 
@@ -41,7 +41,7 @@ public class PuppetTheatre extends Theatre {
     @Override
     public String getFancyInfo() {
         return super.getFancyInfo() +
-                "Главная кукла: " + this.getMainDoll() + "\n" +
+                "Главная марионетка: " + this.getMainDoll() + "\n" +
                 "Количество кукол: " + this.getDollCount() + "\n";
     }
 }

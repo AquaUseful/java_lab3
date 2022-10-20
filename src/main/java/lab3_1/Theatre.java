@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 public abstract class Theatre implements Comparable<Theatre> {
     /** Название типа театра */
-    static String typeName;
+    protected String typeName;
     /** Название театра */
     private String name;
     /** Рейтинг театра */
@@ -19,8 +19,11 @@ public abstract class Theatre implements Comparable<Theatre> {
     private static ArrayList<Theatre> allTheatres;
 
     static {
-        typeName = null;
         allTheatres = new ArrayList<>();
+    }
+
+    {
+        typeName = null;
     }
 
     public Theatre() {
