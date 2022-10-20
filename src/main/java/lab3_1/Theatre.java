@@ -1,59 +1,44 @@
 package lab3_1;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public abstract class Theatre {
+    private static final int[] ratingLimits = { 0, 100 };
     /** Название типа театра */
     static String typeName;
     /** Название театра */
     private String name;
     /** Рейтинг театра */
-    private TheatreRating rating;
+    private int rating;
     /** Художественный руководитель */
-    private ArtDirector artDir;
+    private String artDir;
+    private static LinkedList<Theatre> allTheatres;
 
     static {
         typeName = null;
     }
 
     public Theatre() {
-        this.name = null;
-        this.rating = null;
-        this.artDir = null;
+        allTheatres.add(this);
     }
 
-    public Theatre(String name, TheatreRating rating, ArtDirector director) throws EmptyAttribute {
+    public Theatre(String name, int rating, String director) throws EmptyAttribute, BadRating {
+        this();
         this.setName(name);
-        this.setRating(rating);
+        this.rating = rating;
         this.setArtDirector(director);
     }
 
-    public Theatre(String name, int rating, ArtDirector director) throws EmptyAttribute, BadRating {
-        this.setName(name);
-        this.rating = new TheatreRating(rating);
-        this.setArtDirector(director);
-    }
-
-    public void setName(String name) throws EmptyAttribute {
-        if (name == null || name.isBlank() || name.isEmpty()) {
-            throw new EmptyAttribute("название");
-        }
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void setRating(TheatreRating rating) throws EmptyAttribute {
-        if (rating == null) {
-            throw new EmptyAttribute("рейтинг");
-        }
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
-    public void setRating(int rating) throws BadRating {
-        this.rating.setValue(rating);
-    }
-
-    public void setArtDirector(ArtDirector artDir) throws EmptyAttribute {
-        if (artDir == null) {
-            throw new EmptyAttribute("худ. директор");
-        }
+    public void setArtDirector(String artDir) {
         this.artDir = artDir;
     }
 
@@ -61,11 +46,11 @@ public abstract class Theatre {
         return this.name;
     }
 
-    public TheatreRating getRating() {
+    public int getRating() {
         return this.rating;
     }
 
-    public ArtDirector getArtDirector() {
+    public String getArtDirector() {
         return this.artDir;
     }
 
