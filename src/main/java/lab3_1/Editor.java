@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public abstract class Editor<T> {
@@ -31,13 +32,28 @@ public abstract class Editor<T> {
         this.fields.get(fieldIndex).requestEdit(out, scn);
     }
 
+    public void requestNew(int fieldIndex, PrintStream out, Scanner scn) {
+        this.fields.get(fieldIndex).requestNew(out, scn);
+    }
+
     public void requestNew(PrintStream out, Scanner scn) {
-        for (var field : this.fields) {
-            field.requestNew(out, scn);
+        for (int i = 0; i < this.fields.size(); ++i) {
+            for (;;) {
+                try {
+                    this.requestNew(i, out, scn);
+                } catch (InputMismatchException e) {
+                    out.println("Недопустимое значение поля, попробуйте ещё раз!");
+                    scn.next();
+                    continue;
+                }
+                break;
+            }
         }
     }
 
-    protected abstract void updateObject() throws Exception;
+    protected abstract void updateObject();
+
+    protected abstract void loadObjectFields(T obj);
 
     protected abstract void initializeFields();
 
