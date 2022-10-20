@@ -11,7 +11,7 @@ public class PuppetTheatreEditor extends TheatreEditor {
     @Override
     public void updateObject() {
         if (this.obj == null) {
-            this.obj = new DramaTheatre();
+            this.obj = new PuppetTheatre();
         }
         super.updateObject();
         ((PuppetTheatre) this.obj).setMainDoll((String) this.fields.get(3).getValue());
