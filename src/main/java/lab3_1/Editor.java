@@ -23,7 +23,7 @@ public abstract class Editor<T> {
         this.fields.add(field);
     }
 
-    public T getObject() throws Exception {
+    public T getObject() {
         this.updateObject();
         return this.obj;
     };
@@ -63,21 +63,21 @@ public abstract class Editor<T> {
     }
 
     public void requestNew(int fieldIndex, PrintStream out, Scanner scn) {
-        this.fields.get(fieldIndex).requestNew(out, scn);
+        for (;;) {
+            try {
+                this.fields.get(fieldIndex).requestNew(out, scn);
+            } catch (InputMismatchException e) {
+                out.println("Недопустимое значение поля, попробуйте ещё раз!");
+                scn.next();
+                continue;
+            }
+            break;
+        }
     }
 
     public void requestNew(PrintStream out, Scanner scn) {
         for (int i = 0; i < this.fields.size(); ++i) {
-            for (;;) {
-                try {
-                    this.requestNew(i, out, scn);
-                } catch (InputMismatchException e) {
-                    out.println("Недопустимое значение поля, попробуйте ещё раз!");
-                    scn.next();
-                    continue;
-                }
-                break;
-            }
+            this.requestNew(i, out, scn);
         }
     }
 
