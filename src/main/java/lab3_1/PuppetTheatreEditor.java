@@ -9,7 +9,7 @@ public class PuppetTheatreEditor extends TheatreEditor {
     }
 
     @Override
-    protected void updateObject() {
+    public void updateObject() {
         if (this.obj == null) {
             this.obj = new DramaTheatre();
         }
