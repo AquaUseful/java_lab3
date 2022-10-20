@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public abstract class Theatre {
-    private static final int[] ratingLimits = { 0, 100 };
     /** Название типа театра */
     static String typeName;
     /** Название театра */
@@ -13,17 +12,18 @@ public abstract class Theatre {
     private int rating;
     /** Художественный руководитель */
     private String artDir;
-    private static LinkedList<Theatre> allTheatres;
+    private static ArrayList<Theatre> allTheatres;
 
     static {
         typeName = null;
+        allTheatres = new ArrayList<>();
     }
 
     public Theatre() {
         allTheatres.add(this);
     }
 
-    public Theatre(String name, int rating, String director) throws EmptyAttribute, BadRating {
+    public Theatre(String name, int rating, String director) {
         this();
         this.setName(name);
         this.rating = rating;
@@ -57,4 +57,10 @@ public abstract class Theatre {
     public String getTypeName() {
         return typeName;
     }
+
+    @Override
+    public String toString() {
+        return this.getTypeName() + " театр " + this.name + " " + this.artDir + " " + this.rating;
+    }
+
 }
