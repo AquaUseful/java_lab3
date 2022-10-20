@@ -9,11 +9,7 @@ public class DramaTheatre extends Theatre {
         super();
     }
 
-    public DramaTheatre(String name, TheatreRating rating, ArtDirector director) throws EmptyAttribute {
-        super(name, rating, director);
-    }
-
-    public DramaTheatre(String name, int rating, ArtDirector director) throws EmptyAttribute, BadRating {
+    public DramaTheatre(String name, int rating, String director) throws EmptyAttribute, BadRating {
         super(name, rating, director);
     };
 
