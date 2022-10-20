@@ -28,6 +28,11 @@ public abstract class Editor<T> {
         return this.obj;
     };
 
+    public void setObject(T obj) {
+        this.obj = obj;
+        this.loadObjectFields();
+    }
+
     public void requestEdit(int fieldIndex, PrintStream out, Scanner scn) {
         this.fields.get(fieldIndex).requestEdit(out, scn);
     }
@@ -78,7 +83,7 @@ public abstract class Editor<T> {
 
     protected abstract void updateObject();
 
-    protected abstract void loadObjectFields(T obj);
+    protected abstract void loadObjectFields();
 
     protected abstract void initializeFields();
 
