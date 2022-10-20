@@ -32,6 +32,31 @@ public abstract class Editor<T> {
         this.fields.get(fieldIndex).requestEdit(out, scn);
     }
 
+    public void requestEdit(PrintStream out, Scanner scn) {
+        out.println("Выберите поле для редактиривания:");
+        for (int i = 0; i < this.fields.size(); ++i) {
+            out.println(i + " - " + this.fields.get(i).getName());
+        }
+        int fieldIndex;
+        for (;;) {
+            out.print("Номер поля: ");
+            try {
+                fieldIndex = scn.nextInt();
+                scn.nextLine();
+            } catch (InputMismatchException e) {
+                scn.next();
+                out.println("Недопустимый ввод!");
+                continue;
+            }
+            if ((fieldIndex >= 0) && (fieldIndex < this.fields.size())) {
+                break;
+            } else {
+                out.println("Несущестующий номер поля!");
+            }
+        }
+        this.requestEdit(fieldIndex, out, scn);
+    }
+
     public void requestNew(int fieldIndex, PrintStream out, Scanner scn) {
         this.fields.get(fieldIndex).requestNew(out, scn);
     }
