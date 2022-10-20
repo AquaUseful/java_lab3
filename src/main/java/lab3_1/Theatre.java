@@ -79,7 +79,8 @@ public abstract class Theatre implements Comparable<Theatre> {
     }
 
     public static void sortAll() {
-        Collections.sort(allTheatres, (Theatre th1, Theatre th2) -> th2.getName().compareTo(th1.getName()));
+        Collections.sort(allTheatres,
+                (Theatre th1, Theatre th2) -> th2.getName().toLowerCase().compareTo(th1.getName().toLowerCase()));
     }
 
     public static Theatre getWithHighestRating() {
@@ -88,7 +89,7 @@ public abstract class Theatre implements Comparable<Theatre> {
 
     public static Theatre findByArtDirector(String artDir) {
         for (var th : allTheatres) {
-            if (th.getArtDirector() == artDir) {
+            if (th.getArtDirector().equals(artDir)) {
                 return th;
             }
         }
@@ -97,7 +98,7 @@ public abstract class Theatre implements Comparable<Theatre> {
 
     public static Theatre getWithName(String name) {
         for (var th : allTheatres) {
-            if (th.getName() == name) {
+            if (th.getName().equals(name)) {
                 return th;
             }
         }
@@ -124,5 +125,7 @@ public abstract class Theatre implements Comparable<Theatre> {
                 "Худ. руководитель: " + this.artDir + "\n";
 
     }
+
+    public abstract TheatreEditor getEditor();
 
 }
