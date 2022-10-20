@@ -2,31 +2,18 @@ package lab3_1;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 public abstract class EditorField<T> {
     private String name;
     private T value;
-    protected InputStream inp;
-    private PrintStream out;
-
-    {
-        this.name = null;
-        this.value = null;
-        this.inp = null;
-        this.out = null;
-    }
-
-    public EditorField(String name, InputStream inp, PrintStream out) {
-        this.name = name;
-        this.inp = inp;
-        this.out = out;
-    }
 
     public EditorField(String name) {
-        this(name, System.in, System.out);
+        this.name = name;
     }
 
     public EditorField() {
+        this(null);
     }
 
     public String getName() {
@@ -37,15 +24,24 @@ public abstract class EditorField<T> {
         return this.value;
     }
 
-    private void printPrompt() {
-        this.out.print("Введите значение поля '" + this.getName() + "': ");
+    private void printPrompt(PrintStream out) {
+        out.print("Введите значение поля '" + this.getName() + "': ");
     }
 
-    public void request() {
-        printPrompt();
-        this.value = fetchValue();
-    };
+    private void printValue(PrintStream out) {
+        out.print("Текущее значение поля '" + this.getName() + "': " + this.getValue());
+    }
 
-    abstract protected T fetchValue();
+    public void requestNew(PrintStream out, Scanner scn) {
+        this.printPrompt(out);
+        this.value = this.fetchValue(scn);
+    }
+
+    public void requestEdit(PrintStream out, Scanner scn) {
+        this.printValue(out);
+        this.requestNew(out, scn);
+    }
+
+    abstract protected T fetchValue(Scanner scn);
 
 }

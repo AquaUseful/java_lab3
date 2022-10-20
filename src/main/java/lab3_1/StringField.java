@@ -6,23 +6,17 @@ import java.util.Scanner;
 
 public class StringField extends EditorField<String> {
 
-    public StringField(String name, InputStream inp, PrintStream out) {
-        super(name, inp, out);
+    public StringField() {
+        super();
     }
 
     public StringField(String name) {
         super(name);
     }
 
-    public StringField() {
-        super();
-    }
-
     @Override
-    protected String fetchValue() {
-        Scanner scn = new Scanner(this.inp);
+    protected String fetchValue(Scanner scn) {
         String val = scn.nextLine();
-        scn.close();
         return val;
     }
 }
