@@ -81,7 +81,7 @@ public abstract class Editor<T> {
         }
     }
 
-    protected abstract void updateObject();
+    public abstract void updateObject();
 
     protected abstract void loadObjectFields();
 

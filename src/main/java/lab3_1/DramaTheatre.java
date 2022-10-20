@@ -44,4 +44,11 @@ public class DramaTheatre extends Theatre {
                 "Высшая присвоенная награда: " + this.getMainPrize() + "\n" +
                 "Число гос наград: " + this.getAwardsCount() + "\n";
     }
+
+    @Override
+    public DramaTheatreEditor getEditor() {
+        var ed = new DramaTheatreEditor();
+        ed.setObject(this);
+        return ed;
+    }
 }

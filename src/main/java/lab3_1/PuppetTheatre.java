@@ -44,4 +44,12 @@ public class PuppetTheatre extends Theatre {
                 "Главная марионетка: " + this.getMainDoll() + "\n" +
                 "Количество кукол: " + this.getDollCount() + "\n";
     }
+
+    @Override
+    public PuppetTheatreEditor getEditor() {
+        var ed = new PuppetTheatreEditor();
+        ed.setObject(this);
+        return ed;
+    }
+
 }
