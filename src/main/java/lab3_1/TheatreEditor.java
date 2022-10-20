@@ -9,7 +9,7 @@ abstract class TheatreEditor extends Editor<Theatre> {
     }
 
     @Override
-    protected void updateObject() {
+    public void updateObject() {
         this.obj.setName((String) this.fields.get(0).getValue());
         this.obj.setRating((int) this.fields.get(1).getValue());
         this.obj.setArtDirector((String) this.fields.get(2).getValue());
